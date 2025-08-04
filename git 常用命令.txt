@@ -43,3 +43,16 @@
         git commit             版本区也删除了
 # 如果是误删
         git checkout -- 文件名 就能在工作区恢复文件，但是只能恢复到版本最新，修改会丢失
+
+
+# 本地git仓库链接github
+        先在本地创建.ssh文件,得到公钥和私钥之后，先在github上添加公钥之后在本地创建链接
+        git remote add origin git@github.com:xiequan277/GET-GPT.git
+
+        仓库分支推送
+        git push -u origin master
+
+# 远程仓库创建分支并切换
+        git checkout -b dev = git branch dev + git checkout dev
+
+
