@@ -1,0 +1,42 @@
+cd /data/
+
+ll
+
+cd venv/
+
+ll
+
+source venv_gst/bin/activate
+
+GPT-venv/bin/activate
+
+nvidia-smi
+
+
+������ip��ַ��ssh��Կ��
+root@192.168.223.153
+
+��Կ��ZxyPve242Ct153!
+
+Python ������λ�ã�
+/data/venv/venv_gst/bin/python3
+
+��װ�����
+liunx:
+pip install transformers -i https://pypi.tuna.tsinghua.edu.cn/simple
+windows:
+python -m pip install transformers -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+�鿴�ڴ棺
+free -h
+
+����ͷRTSP��Ƶ����
+rtsp://admin:Foxconn123@10.187.43.222:554/Streaming/Channels/101
+
+链接远程服务器上传数据图片应用sftp插件
+查看远程链接服务器端口号：、
+sudo cat /etc/ssh/sshd_config | grep Port
+用VScode打开要上传文件目录
+1.ctrl+shift+p 输入sftp 打开config
+2.填写服务器信息，端口号等
+3.上传

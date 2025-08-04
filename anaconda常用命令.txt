@@ -1,0 +1,96 @@
+conda create --prefix=D:\python36\py36 python=3.6
+
+conda info -e 
+
+conda activate F:\YDS
+
+conda activate labelimg
+
+conda activate Yolo
+
+ultralytics
+miniconda3/envs/YOLOv5/lib/python3.8/site-packages/ultralytics/cfg
+
+labelImg
+jupyter notebook
+
+使用命令conda remove -n F:\pytorch_virtual --all 即可删除
+
+pip install package_name -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com
+
+各种源的网站
+https://zhuanlan.zhihu.com/p/46975553
+
+ubuntu:
+pip install -r requirements.txt --no-cache-dir
+
+visdom
+1. ssh -L 18097:localhost:8097 -p 35411 root@connect.beijinga.seetacloud.com
+2. python -m visdom.server
+3. http://127.0.0.1:18097/
+
+flask:
+	每次都要设置
+	为文件在终端设置环境变量
+		$env:FLASK_APP = "market.py"
+	打开DEBUG模式保证随时看到变化
+		$env:FLASK_DEBUG = 1
+	运行
+		flask run
+cd manba
+Vim:
+PD训练分类
+CUDA_VISIBLE_DEVICES=0 python -m torch.distributed.launch --nproc_per_node=1 Vim/vim/main.py --model vim_small_patch16_224_bimambav2_final_pool_mean_abs_pos_embed_with_midclstok_div2 --batch-size 4 --drop-path 0.05 --weight-decay 0.05 --lr 1e-3 --num_workers 4 --data-path /root/autodl-tmp/manba/Vim/vim/PRPD-VIM --output_dir ./output/vim_small_patch16_224_bimambav2_final_pool_mean_abs_pos_embed_with_midclstok_div2_S --no_amp
+
+
+PD训练分类
+cd VMamba
+python -m torch.distributed.launch --nnodes=1 --node_rank=0 --nproc_per_node=1 --master_addr="127.0.0.1" --master_port=29501 classification/main.py --cfg classification/configs/vssm/vmambav2_small_224.yaml --batch-size 4 --data-path ~/autodl-tmp/manba/Vim/vim/PRPD-VIM --output tmp
+
+
+ImageNet训练分类
+python -m torch.distributed.launch --nnodes=1 --node_rank=0 --nproc_per_node=1 --master_addr="127.0.0.1" --master_port=29501 classification/main.py --cfg classification/configs/vssm/vmambav2_tiny_224.yaml --batch-size 4 --data-path classification/ImageNet-1k/image --output tmp/imagenet
+
+热力图绘制破解：
+CUDA_VISIBLE_DEVICES=0 python analyze/attnmap.py
+CUDA_VISIBLE_DEVICES=0 python classification/main_VMamba.py --cfg classification/configs/vssm/vmambav2_tiny_224.yaml
+
+
+
+/VMamba/tmp/ckpt_epoch_27.pth
+
+热力图绘制破解：
+GLOGBEL ["isLogin"] =true
+
+目标测训练代码：
+先切换到ultralytics-main文件
+yolo train data= ultralytics/cfg/datasets/NonDao.yaml model=yolov8n.pt epochs=100 lr0=0.01 
+
+yolo train data= ultralytics/cfg/datasets/NonDao_1148.yaml model=yolov8m.pt epochs=250 lr0=0.01 
+
+目标测测试预测图片代码：
+yolo detect predict model=/root/autodl-tmp/yolo-detect/ultralytics-main/runs/detect/train9/weights/last.pt source=/root/autodl-tmp/yolo-detect/ultralytics-main/ultralytics/cfg/datasets/NonDao/val/images/1689658473569492981.jpg
+
+目标测测试预测视频代码：
+yolo task=detect mode=predict model=runs/detect/train22/weights/last.pt source=NonDao_video/20241113_102842.mp4 show=True conf=0.8 iou=0.9  
+
+
+只用last.pt ，best.pt不知道为么用不了
+
+量化后测试输入：
+python main.py --model last.onnx --img "F:\YOLO\ultralytics-main\data\NonDao_1000\val\images\2837499212441068242.jpg"
+
+
+windows本地配置
+pytorch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 
+
+
+
+python train.py --dataroot datasets/NH-HAZE --name HAZE_cyclegan --model cycle_gan 
+https://github.com/jiaqixuac/MAP-Net
+
+
+python test.py --dataroot datasets/NH-HAZE/testB --name HAZE_cyclegan_256 --model test --no_dropout
+记得用生成器B
+
+python train.py --dataroot datasets/NH-HAZE --name HAZE_pix2pix --model pix2pix --direction BtoA
