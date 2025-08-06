@@ -94,3 +94,20 @@ python test.py --dataroot datasets/NH-HAZE/testB --name HAZE_cyclegan_256 --mode
 记得用生成器B
 
 python train.py --dataroot datasets/NH-HAZE --name HAZE_pix2pix --model pix2pix --direction BtoA
+
+行人属性检测：
+1.Rethinking of PAR
+		train: Resnet50:         CUDA_VISIBLE_DEVICES=1 python train.py --cfg ./configs/pedes_baseline/pa100k.yaml
+			   swin-transformer: CUDA_VISIBLE_DEVICES=0,1 python train.py --cfg ./configs/pedes_baseline/pa100k.yaml
+
+
+			   
+		Test:  CUDA_VISIBLE_DEVICES=1 python predict_text.py --cfg ./configs/pedes_baseline/pa100k.yaml --test_img ./test_imgs
+			   CUDA_VISIBLE_DEVICES=1 python predict_video.py --cfg ./configs/pedes_baseline/pa100k.yaml --test_video ./video.mp4  无追踪技术
+
+			   CUDA_VISIBLE_DEVICES=1 python predict_video_BTrack.py --cfg ./configs/pedes_baseline/pa100k.yaml --test_video ./video.mp4 --conf 0.8 有追踪技术 Btrack
+			   CUDA_VISIBLE_DEVICES=1 python predict_video_DTrack.py --cfg ./configs/pedes_baseline/pa100k.yaml --test_video ./video.mp4 --conf 0.8 有追踪技术 Dtrack
+			   
+行人检测：
+		yolo train data=ultralytics/cfg/datasets/people_dectet.yaml model=yolo11n.pt epochs=30 lr0=0.01 device=1
+		
